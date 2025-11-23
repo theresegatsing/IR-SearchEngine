@@ -76,6 +76,57 @@ public class SearchApp {
             }
         }
     }
+	
+	
+	 /**
+     * Creates a small set of hard-coded documents.
+     * In a real project, this is where you would call your Crawl API.
+     */
+    private static List<Document> createSampleDocuments() {
+        List<Document> docs = new ArrayList<>();
+
+        docs.add(new Document(
+                1,
+                "Introduction to Java",
+                "Java is a high-level, class-based, object-oriented programming language " +
+                "that is widely used in web development, Android apps, and backend systems.",
+                LocalDate.of(2024, 3, 10)
+        ));
+
+        docs.add(new Document(
+                2,
+                "Building a Simple Search Engine",
+                "This article explains how to build a simple search engine using inverted indexes, " +
+                "boolean operators like AND and OR, and support for exact phrase queries.",
+                LocalDate.of(2024, 5, 2)
+        ));
+
+        docs.add(new Document(
+                3,
+                "Data Structures for Search",
+                "Common data structures used in search engines include inverted indexes, " +
+                "tries, and priority queues. These structures help store and retrieve data quickly.",
+                LocalDate.of(2023, 11, 20)
+        ));
+
+        docs.add(new Document(
+                4,
+                "Learning Python for Data Science",
+                "Python is a popular language for data science, machine learning, and scripting. " +
+                "While it is not Java, many concepts like data structures and algorithms are shared.",
+                LocalDate.of(2024, 1, 15)
+        ));
+
+        docs.add(new Document(
+                5,
+                "Advanced Search Techniques",
+                "Advanced search supports boolean operators, exact phrase matching, " +
+                "and ranking documents based on relevance and recency. Snippets show where the match occurs.",
+                LocalDate.of(2024, 7, 1)
+        ));
+
+        return docs;
+    }
 
 
 }
