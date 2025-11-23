@@ -116,5 +116,33 @@ public class SimpleSearchEngine {
         return score;
     }
 
+    
+    /**
+     * Extract phrases that were inside quotes.
+     * Example: java "search engine" NOT python -> ["search engine"]
+     */
+    private List<String> extractPhrases(String rawQuery) {
+        List<String> phrases = new ArrayList<>();
+        boolean inQuotes = false;
+        StringBuilder current = new StringBuilder();
+
+        for (int i = 0; i < rawQuery.length(); i++) {
+            char c = rawQuery.charAt(i);
+            if (c == '"') {
+                inQuotes = !inQuotes;
+                if (!inQuotes) {
+                    // Phrase ended
+                    if (current.length() > 0) {
+                        phrases.add(current.toString());
+                        current.setLength(0);
+                    }
+                }
+            } else if (inQuotes) {
+                current.append(c);
+            }
+        }
+
+        return phrases;
+    }
 
 }
