@@ -59,5 +59,10 @@ public class Document {
 	        return contentLower.contains(termLower);
 	    }
 	    
-	    
+	    /**
+	     * Returns true if this document contains the given phrase (already lowercase).
+	     */
+	    public boolean containsPhrase(String phraseLower) {
+	        return contentLower.contains(phraseLower);
+	    }
 }
