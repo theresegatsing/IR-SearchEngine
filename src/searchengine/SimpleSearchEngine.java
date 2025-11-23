@@ -14,5 +14,16 @@ public class SimpleSearchEngine {
 	
 	private final List<Document> documents;
     private final InvertedIndex index;
+    
+    
+    public SimpleSearchEngine(List<Document> documents) {
+        this.documents = new ArrayList<>(documents);
+        this.index = new InvertedIndex();
+
+        // Build the index once
+        for (Document doc : this.documents) {
+            index.addDocument(doc);
+        }
+    }
 
 }
