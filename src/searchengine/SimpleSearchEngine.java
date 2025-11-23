@@ -11,5 +11,8 @@ import java.util.*;
  */
 
 public class SimpleSearchEngine {
+	
+	private final List<Document> documents;
+    private final InvertedIndex index;
 
 }
