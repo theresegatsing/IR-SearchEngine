@@ -25,5 +25,14 @@ public class SimpleSearchEngine {
             index.addDocument(doc);
         }
     }
+    
+    
+    /**
+     * Basic search using full "advanced" query syntax.
+     * Relevance only.
+     */
+    public List<SearchResult> search(String query) {
+        return search(query, false);
+    }
 
 }
