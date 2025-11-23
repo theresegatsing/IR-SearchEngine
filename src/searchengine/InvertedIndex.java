@@ -47,6 +47,13 @@ public class InvertedIndex {
         // Return a copy so the caller can modify it without affecting the index
         return new HashSet<>(docs);
     }
+    
+    /**
+     * For debugging.
+     */
+    public int getNumberOfIndexedTerms() {
+        return index.size();
+    }
 
 
 
