@@ -1,4 +1,4 @@
-# Simple Search Engine (Java)
+# Simple Search Engine 
 
 A small **console-based** search engine written in Java.  
 It indexes a fixed set of documents and lets you search them using:
