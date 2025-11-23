@@ -34,5 +34,44 @@ public class SimpleSearchEngine {
     public List<SearchResult> search(String query) {
         return search(query, false);
     }
+    
+    
+    /**
+     * Search with option to sort by date secondary.
+     *
+     * @param query      user query (supports AND/OR/NOT, phrases)
+     * @param sortByDate if true, results with same score are ordered by date (newest first)
+     */
+    public List<SearchResult> search(String query, boolean sortByDate) {
+        // 1) Use BooleanQueryProcessor to get matching documents
+        Set<Document> matchedDocs = BooleanQueryProcessor.evaluate(query, documents, index);
+
+        // 2) Compute scores for each matched document
+        List<SearchResult> results = new ArrayList<>();
+
+        for (Document doc : matchedDocs) {
+            double score = computeScore(doc, query);
+            String snippetQuery = extractSnippetQueryTerm(query);
+            String snippet = doc.createSnippet(snippetQuery, 120);
+            results.add(new SearchResult(doc, score, snippet));
+        }
+
+        // 3) Sort by score (and date optionally)
+        if (sortByDate) {
+            results.sort((r1, r2) -> {
+                int cmp = Double.compare(r2.getScore(), r1.getScore());
+                if (cmp != 0) {
+                    return cmp;
+                }
+                // If scores equal, compare by date (newer first)
+                return r2.getDocument().getDate().compareTo(r1.getDocument().getDate());
+            });
+        } else {
+            Collections.sort(results); // uses compareTo (by score)
+        }
+
+        return results;
+    }
+    
 
 }
