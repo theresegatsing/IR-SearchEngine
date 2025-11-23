@@ -65,4 +65,22 @@ public class Document {
 	    public boolean containsPhrase(String phraseLower) {
 	        return contentLower.contains(phraseLower);
 	    }
+	    
+	    
+	    /**
+	     * Create a short snippet that shows where the query appears in the document.
+	     * If the query is not found, returns the beginning of the document.
+	     */
+	    public String createSnippet(String queryLower, int maxLength) {
+	        String text = content;
+	        String lower = contentLower;
+
+	        int index = lower.indexOf(queryLower);
+	        if (index < 0) {
+	            // If we can't find it, just return the beginning
+	            if (text.length() <= maxLength) {
+	                return text;
+	            }
+	            return text.substring(0, maxLength) + "...";
+	     }
 }
