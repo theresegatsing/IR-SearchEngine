@@ -82,5 +82,21 @@ public class Document {
 	                return text;
 	            }
 	            return text.substring(0, maxLength) + "...";
-	     }
+	        }
+
+	        // Try to center the snippet around the match
+	        int start = Math.max(0, index - 30);
+	        int end = Math.min(text.length(), index + queryLower.length() + 70);
+
+	        String snippet = text.substring(start, end);
+	        if (start > 0) {
+	            snippet = "..." + snippet;
+	        }
+	        if (end < text.length()) {
+	            snippet = snippet + "...";
+	        }
+	        return snippet;
+	    }
+
+	        
 }
